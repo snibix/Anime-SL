@@ -9,6 +9,7 @@ Les données proviennent de l’API [Jikan](https://jikan.moe/), une API non off
 - JavaScript
 - React Router
 - Jikan API
+- Bootstrap
 
 ## 📌 Fonctionnalités
 
