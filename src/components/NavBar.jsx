@@ -1,4 +1,5 @@
 // import PropTypes from 'prop-types'
+import logo from "../../public/logo/logo.webp";
 
 function NavBar() {
   return (
@@ -8,10 +9,7 @@ function NavBar() {
     >
       <div className="container d-flex justify-content-between">
         <a className="navbar-brand" href="#">
-          <img
-            src="/src/assets/logo/logo_projet_perso.webp"
-            className="img-fluid img-perso"
-          />
+          <img src={logo} className="img-fluid img-perso" />
         </a>
         <button
           className="navbar-toggler"
