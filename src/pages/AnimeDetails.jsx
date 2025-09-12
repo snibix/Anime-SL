@@ -53,7 +53,7 @@ function AnimeDetails() {
               <img
                 src={animeData.images.jpg.large_image_url}
                 alt={animeData.title}
-                className="img-fluid rounded"
+                className="img-fluid rounded h-end-50"
               />
 
               {/* Genres */}
@@ -90,8 +90,8 @@ function AnimeDetails() {
 
               {/* Trailer */}
               <div className="col-12 col-md-12 py-3">
-                <h3 className="">Trailer</h3>
-                <div className="ratio ratio-16x9 py-5">
+                <h3 className="mb-4">Trailer</h3>
+                <div className="ratio ratio-21x9 py-5">
                   <iframe
                     src={animeData.trailer.embed_url}
                     title={`Trailer de ${animeData.title}`}

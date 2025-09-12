@@ -1,8 +1,9 @@
 {
-  "name": "projet-perso-manga",
+  "name": "Anime-SL",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://snibix.github.io/Anime-SL/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
