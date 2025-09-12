@@ -25,7 +25,7 @@ function Card({ anime }) {
         {/* Contenu de la carte */}
         <div className="card-body d-flex flex-column">
           <h3 className="card-title text-uppercase fs-5 fs-md-4 mb-3 text-center text-md-start">
-            {anime.title_english}
+            {anime.title}
           </h3>
 
           <p
