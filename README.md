@@ -10,6 +10,7 @@ Les données proviennent de l’API [Jikan](https://jikan.moe/), une API non off
 - React Router
 - Jikan API
 - Bootstrap
+- Motion
 
 ## 📌 Fonctionnalités
 
