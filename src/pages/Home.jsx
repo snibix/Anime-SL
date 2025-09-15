@@ -96,7 +96,7 @@ function Home({ selectedCategory, searchTerm }) {
               {filteredAnimes.length > 0 ? (
                 filteredAnimes.map((anime, index) => (
                   <Card
-                    key={anime.id}
+                    key={`${anime.id}-${index}`}
                     anime={anime}
                     animationDelay={index * 0.05}
                   />
