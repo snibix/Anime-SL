@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -103,7 +104,16 @@ function AnimeDetails() {
       >
         <div className="container py-5">
           <div className="row align-items-center">
-            <div className="col-12">
+            <motion.div
+              className="col-12"
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                type: "tween",
+                ease: "easeOut",
+                duration: 0.6,
+              }}
+            >
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                   <li className="breadcrumb-item">
@@ -120,7 +130,7 @@ function AnimeDetails() {
                   {animeData.title_japanese}
                 </p>
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -129,7 +139,16 @@ function AnimeDetails() {
       <div className="container my-5">
         <div className="row g-4">
           {/* Colonne gauche - Image et infos */}
-          <div className="col-lg-4">
+          <motion.div
+            className="col-lg-4"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              type: "tween",
+              ease: "easeOut",
+              duration: 0.6,
+            }}
+          >
             {/* Image avec effet hover */}
             <div className="card border-0 shadow-lg mb-4">
               <div className="position-relative overflow-hidden">
@@ -210,10 +229,19 @@ function AnimeDetails() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Colonne droite - Contenu principal */}
-          <div className="col-lg-8">
+          <motion.div
+            className="col-lg-8"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              type: "tween",
+              ease: "easeOut",
+              duration: 0.6,
+            }}
+          >
             {/* Trailer avec design amélioré */}
             {animeData.trailer?.embed_url && (
               <div className="card border-0 shadow mb-4">
@@ -300,7 +328,7 @@ function AnimeDetails() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
