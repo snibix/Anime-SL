@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { LoadingSpinner } from "../components/Loader";
 import NavBarCat from "../components/NavBarCat";
 import { fetchAnimeList } from "../data/AnimeService"; // Récupération des données
 
@@ -37,8 +39,19 @@ function Home() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (loading) {
+    return <LoadingSpinner message="Chargement des données..." />;
+  }
+
+  if (error) {
+    return (
+      <ErrorMessage
+        error={error}
+        onRetry={handleRetry}
+        title="Erreur de chargement"
+      />
+    );
+  }
 
   return (
     <main>
