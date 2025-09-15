@@ -1,13 +1,19 @@
+import { motion, useInView } from "motion/react";
 import PropTypes from "prop-types";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import useScrollDirection from "../hook/useScrollDirection";
 
 function Card({ anime }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const scrollDir = useScrollDirection();
+
   return (
     <article className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-      <div
+      <motion.div
         className="card h-100 border-0 shadow-sm position-relative overflow-hidden"
         style={{
-          transition: "all 0.3s ease",
           borderRadius: "15px",
         }}
         onMouseEnter={(e) => {
@@ -20,6 +26,14 @@ function Card({ anime }) {
           e.currentTarget.classList.remove("shadow-lg");
           e.currentTarget.classList.add("shadow-sm");
         }}
+        initial={{ opacity: 0, y: scrollDir === "down" ? 100 : -100 }}
+        animate={
+          isInView
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: scrollDir === "down" ? 100 : -100 }
+        }
+        transition={{ type: "tween", ease: "linear", duration: 0.7 }}
+        ref={ref}
       >
         {/* Image avec overlay au hover */}
         <div className="position-relative overflow-hidden">
@@ -31,9 +45,9 @@ function Card({ anime }) {
               style={{
                 height: "280px",
                 width: "100%",
-                objectFit: "contain", // Garde l'image entière
+                objectFit: "contain",
                 objectPosition: "center",
-                backgroundColor: "#f8f9fa", // Background gris clair si l'image ne remplit pas
+                backgroundColor: "#f8f9fa",
                 transition: "transform 0.3s ease",
                 borderRadius: "15px 15px 0 0",
               }}
@@ -197,7 +211,7 @@ function Card({ anime }) {
                 : "linear-gradient(90deg, #6c757d, #495057)",
           }}
         />
-      </div>
+      </motion.div>
     </article>
   );
 }
