@@ -16,29 +16,28 @@ function Card({ anime }) {
         style={{
           borderRadius: "15px",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "translateY(-8px)";
-          e.currentTarget.classList.remove("shadow-sm");
-          e.currentTarget.classList.add("shadow-lg");
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.classList.remove("shadow-lg");
-          e.currentTarget.classList.add("shadow-sm");
-        }}
         initial={{ opacity: 0, y: scrollDir === "down" ? 100 : -100 }}
         animate={
           isInView
             ? { opacity: 1, y: 0 }
             : { opacity: 0, y: scrollDir === "down" ? 100 : -100 }
         }
-        transition={{ type: "tween", ease: "linear", duration: 0.7 }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.6 }}
         ref={ref}
+        whileHover={{
+          y: -15,
+          boxShadow: "0px 10px 20px rgba(0,0,0,0.25)",
+          transition: { type: "tween", ease: "easeIn", duration: 0.2 },
+        }}
+        whileTap={{
+          y: 0,
+          boxShadow: "0px 5px 10px rgba(0,0,0,0.15)",
+        }}
       >
         {/* Image avec overlay au hover */}
         <div className="position-relative overflow-hidden">
           <Link to={`/anime/${anime.mal_id}`} className="text-decoration-none">
-            <img
+            <motion.img
               src={anime.images.jpg.large_image_url}
               alt={anime.title}
               className="card-img-top"
@@ -48,31 +47,29 @@ function Card({ anime }) {
                 objectFit: "contain",
                 objectPosition: "center",
                 backgroundColor: "#f8f9fa",
-                transition: "transform 0.3s ease",
                 borderRadius: "15px 15px 0 0",
               }}
-              onMouseEnter={(e) => (e.target.style.transform = "scale(1.1)")}
-              onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
             />
 
             {/* Overlay gradient au hover */}
-            <div
+            <motion.div
               className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
               style={{
                 background:
                   "linear-gradient(135deg, rgba(0,123,255,0.8) 0%, rgba(108,117,125,0.8) 100%)",
-                opacity: 0,
-                transition: "opacity 0.3s ease",
                 borderRadius: "15px 15px 0 0",
               }}
-              onMouseEnter={(e) => (e.target.style.opacity = "1")}
-              onMouseLeave={(e) => (e.target.style.opacity = "0")}
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
             >
               <span className="text-white fw-bold fs-5">
                 <i className="bi bi-play-circle-fill me-2"></i>
                 Voir les détails
               </span>
-            </div>
+            </motion.div>
           </Link>
 
           {/* Badge de score */}
@@ -103,7 +100,7 @@ function Card({ anime }) {
         <div className="card-body d-flex flex-column p-4">
           {/* Titre avec animation */}
           <Link to={`/anime/${anime.mal_id}`} className="text-decoration-none">
-            <h3
+            <motion.h3
               className="card-title fw-bold mb-3"
               style={{
                 fontSize: "1.1rem",
@@ -114,16 +111,15 @@ function Card({ anime }) {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 2,
                 color: "#2c3e50",
-                transition: "color 0.3s ease",
               }}
-              onMouseEnter={(e) => (e.target.style.color = "#007bff")}
-              onMouseLeave={(e) => (e.target.style.color = "#2c3e50")}
+              whileHover={{ color: "#007bff" }}
+              transition={{ duration: 0.3 }}
             >
               {anime.title}
-            </h3>
+            </motion.h3>
           </Link>
 
-          {/* Synopsis avec meilleur styling */}
+          {/* Synopsis */}
           <p
             className="card-text flex-grow-1 mb-3"
             style={{
@@ -141,7 +137,7 @@ function Card({ anime }) {
             {anime.synopsis || "Synopsis non disponible"}
           </p>
 
-          {/* Informations en bas avec design moderne */}
+          {/* Informations */}
           <div
             className="mt-auto pt-3"
             style={{ borderTop: "1px solid #e9ecef" }}
@@ -198,7 +194,7 @@ function Card({ anime }) {
           </div>
         </div>
 
-        {/* Effet de bordure colorée en bas */}
+        {/* Effet de bordure colorée */}
         <div
           className="position-absolute bottom-0 start-0 w-100"
           style={{
